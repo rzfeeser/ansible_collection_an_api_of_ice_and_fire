@@ -110,6 +110,6 @@ This collection is licensed under GPL-2.0-or-later. See LICENSE file for details
 
 **RZFeeser** - rzfeeser@users.noreply.github.com
 
-For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/rzfeeser/ansible_collection_an_api_of_ice_and_fire).
+For issues, questions, or contributions, please visit the [https://iris7.com](https://iris7.com)
 
 
