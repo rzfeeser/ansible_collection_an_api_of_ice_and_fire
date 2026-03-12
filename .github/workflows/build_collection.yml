@@ -25,7 +25,7 @@ jobs:
         run: ansible-galaxy collection build --output-path ./build
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: collection-build
           path: build/
