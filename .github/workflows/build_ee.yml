@@ -5,7 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "execution-environment.yml"
-      - ".github/workflows/build-ee.yml"
+      - ".github/workflows/build_ee.yml"
       - "**/requirements.yml"
       - "**/requirements.txt"
       # - "**/bindep.txt"
