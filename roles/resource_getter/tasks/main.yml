@@ -1,0 +1,16 @@
+---
+# tasks file for api_of_ice_and_fire_resource_getter
+## Make initial lookup to root API
+- name: 'Make api call to https://anapioficeandfire.com/api/'
+  ansible.builtin.uri:
+    url: 'https://anapioficeandfire.com/api/'
+    method: GET                  # default is GET
+  register: results              # create the variable 'results' and save the 200 + JSON response from server
+
+- name: Display the content of results
+  ansible.builtin.debug:
+    var: results.json            # no HTTP headers or other metadata displayed, just the JSON attachment
+
+- name: Create a loop across multiple tasks
+  include_tasks: "loops_include_tasks.yml"
+  loop: "{{ results.json | dict2items }}"

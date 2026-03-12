@@ -1,0 +1,25 @@
+---
+- name: 'Use uri module to call https://anapioficeandfire.com/api/books/<VAR>'   # metadata
+  hosts: localhost                   # this is a *multiplier* (how many instances of the playbook should be created)
+  gather_facts: false                # this would only define ansible_facts for the localhost (i.e. the controller)
+  connection: ansible.builtin.local  # ensure ansible does not ssh to itself
+  
+  vars:
+    book_to_lookup: 1                # books available - 1 to 10
+
+  tasks:
+    - name: "Make api call to https://anapioficeandfire.com/api/"
+      ansible.builtin.uri:
+        url: "https://anapioficeandfire.com/api/"   # keeping the code DRY (DON'T REPEAT YOURSELF)
+        method: GET                  # default is GET
+      register: results              # create the variable 'results' and save the 200 + JSON response from server
+
+    - name: "Make api call to {{ results.json.books}}/{{ book_to_lookup }}"
+      ansible.builtin.uri:
+        url: "{{ results.json.books }}/{{ book_to_lookup }}"   # keeping the code DRY (DON'T REPEAT YOURSELF)
+        method: GET                  # default is GET
+      register: bookresults          # create the variable 'results' and save the 200 + JSON response from server
+
+    - name: Display the content of results
+      ansible.builtin.debug:
+        var: bookresults.json        # no HTTP headers or other metadata displayed, just the JSON attachment

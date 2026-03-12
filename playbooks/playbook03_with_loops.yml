@@ -1,0 +1,22 @@
+---
+- name: 'Use uri module to call https://anapioficeandfire.com/api/'   # metadata
+  hosts: localhost                   # this is a *multiplier* (how many instances of the playbook should be created)
+  gather_facts: false                # this would only define ansible_facts for the localhost (i.e. the controller)
+  connection: ansible.builtin.local  # ensure ansible does not ssh to itself
+  
+  tasks:
+    ## Make initial lookup to root API
+    - name: 'Make api call to https://anapioficeandfire.com/api/'
+      ansible.builtin.uri:
+        url: 'https://anapioficeandfire.com/api/'
+        method: GET                  # default is GET
+      register: results              # create the variable 'results' and save the 200 + JSON response from server
+
+    - name: Display the content of results
+      ansible.builtin.debug:
+        var: results.json            # no HTTP headers or other metadata displayed, just the JSON attachment
+
+    - name: Create a loop across multiple tasks
+      include_tasks: "playbook03-with-loops-include_tasks.yml"
+      loop: "{{ results.json | dict2items }}"
+

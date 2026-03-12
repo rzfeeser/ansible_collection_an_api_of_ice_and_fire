@@ -1,0 +1,11 @@
+---
+- name: 'Use role to call https://anapioficeandfire.com/api/ along with resources books, houses, characters'   # metadata
+  hosts: localhost                   # this is a *multiplier* (how many instances of the playbook should be created)
+  gather_facts: false                # this would only define ansible_facts for the localhost (i.e. the controller)
+  connection: ansible.builtin.local  # ensure ansible does not ssh to itself
+
+  vars_files:
+    - input_file.yml
+
+  roles:
+    - rzfeeser.an_api_of_ice_and_fire.resource_getter

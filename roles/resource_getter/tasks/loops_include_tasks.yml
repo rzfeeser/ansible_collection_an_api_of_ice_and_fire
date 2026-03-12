@@ -1,0 +1,10 @@
+## loop across results returned by initial API and call each resource (books, characters, houses)
+- name: "Make api calls using loop to houses, characters, books"
+  ansible.builtin.uri:
+    url: "{{ item.value }}"   # keeping the code DRY (DON'T REPEAT YOURSELF)
+    method: GET                       # default is GET
+  register: resource_results               # create the variable 'results' and save the 200 + JSON response from server
+
+- name: Display the content of results
+  ansible.builtin.debug:
+    var: resource_results.json          # no HTTP headers or other metadata displayed, just the JSON attachment
