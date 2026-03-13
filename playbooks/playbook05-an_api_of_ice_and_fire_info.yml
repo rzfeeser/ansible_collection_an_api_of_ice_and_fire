@@ -1,0 +1,48 @@
+- name: Test rzfeeser.an_api_of_ice_and_fire.info
+  hosts: localhost
+  connection: ansible.builtin.local
+  gather_facts: false
+
+
+  tasks:
+  - name: Query all books
+    rzfeeser.an_api_of_ice_and_fire.info:
+      resource: books
+    register: results
+
+  - name: Display results
+    ansible.builtin.debug:
+      var: results
+
+  - name: Query book 1
+    rzfeeser.an_api_of_ice_and_fire.info:
+      resource: books
+      resource_id: 1
+    register: results
+
+
+  - name: Display results
+    ansible.builtin.debug:
+      var: results
+
+  - name: Query character 2
+    rzfeeser.an_api_of_ice_and_fire.info:
+      resource: characters
+      resource_id: 2
+    register: results
+
+
+  - name: Display results
+    ansible.builtin.debug:
+      var: results
+
+  - name: Query houses 40
+    rzfeeser.an_api_of_ice_and_fire.info:
+      resource: houses
+      resource_id: 40
+    register: results
+
+
+  - name: Display results
+    ansible.builtin.debug:
+      var: results

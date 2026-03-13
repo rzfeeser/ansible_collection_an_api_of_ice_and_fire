@@ -8,7 +8,7 @@ namespace: rzfeeser
 name: an_api_of_ice_and_fire
 
 # The version of the collection. Must be compatible with semantic versioning
-version: 1.0.0
+version: 1.1.0
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
